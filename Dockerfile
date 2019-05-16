@@ -21,6 +21,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone &
     make install && \
     mkdir -p -m 777 /nfsen && \
     mkdir -p -m 777 /netflows && \
+    cd /build && \
     wget http://sourceforge.net/projects/nfsen/files/stable/nfsen-1.3.8/nfsen-1.3.8.tar.gz && \
     tar -xzf nfsen-1.3.8.tar.gz && \
     cd nfsen-1.3.8 && \
@@ -31,7 +32,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone &
     rm -rf /build
 ADD site.conf /etc/nginx/sites-available/default
 ADD run.sh /run.sh
-ENTRYPOINT ["/run.sh"]
+CMD ["/run.sh"]
 
 
 
